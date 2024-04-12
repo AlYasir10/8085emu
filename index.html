@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Query Viewer</title>
+    <style>
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            /* Adjust as needed */
+        }
+
+        .query-container {
+            width: 45%;
+            margin: 20px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .query-text {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 5px;
+            font-family: monospace;
+        }
+
+        .copy-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .copy-button:active,
+        .copy-button:focus {
+            background-color: #0056b3;
+            /* Darker shade of blue */
+            outline: none;
+            /* Remove default focus outline */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="query-container">
+            <h3>1 A: Basic Variables</h3>
+            <textarea class="query-text" readonly>
+                set serveroutput on;
+                declare
+                a integer;
+                b integer;
+                c integer;
+                begin
+                a:=&a;
+                b:=&b;
+                c:=a+b;
+                dbms_output.put_line('the output is:'||c);
+                end;
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+        <div class="query-container">
+            <h3>1 B: Creating Table and increasing table by 0.15%</h3>
+            <textarea class="query-text" readonly>
+                create table name(eid integer primary key,ename varchar(20),doj date,salary number);
+                insert into  name values(1,'name','22-march-2024',68768);
+                insert into name values(2,'name','23-march-2024',678828);
+                insert into name values(3,'denzik','24-march-2024',978668);
+    
+                select*from denzil;
+    
+                set serveroutput on;
+                declare
+                id varchar(20);
+                begin
+                id:=&eid;
+                update denzil set salary=salary+0.15*salary where eid=id;
+                end;
+    
+                elect*from denzil;
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+        <div class="query-container">
+            <h3>2 A: Basic Loop</h3>
+            <textarea class="query-text" readonly>
+                set serveroutput on;
+                declare
+                a number :=1;
+                begin
+                loop
+                a:=a+1;
+                dbms_output.put_line('Hello world');
+                exit when a>5;
+                end loop;
+                end;
+                
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+        <div class="query-container">
+            <h3>2 B: While Loop</h3>
+            <textarea class="query-text" readonly>
+                set serveroutput on;
+                declare
+                a number :=1;
+                begin
+                while a<=10
+                loop
+                dbms_output.put_line('the result is:'||a);
+                a:=a+1;
+                end loop;
+                end;
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+        <div class="query-container">
+            <h3>2 C: For Loop</h3>
+            <textarea class="query-text" readonly>
+                set serveroutput on;
+                declare
+                a integer:=10;
+                begin
+                dbms_output.put_line('For Loop');
+                for b in 1..10
+                loop
+                dbms_output.put_line(a*b);
+                end loop;
+                 end;
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+
+        <div class="query-container">
+            <h3>3 A: if else</h3>
+            <textarea class="query-text" readonly>
+                set serveroutput on;
+                declare
+                a number:=100;
+                begin
+                if(a<20) 
+                then
+                dbms_output.put_line('less then 20');
+                else
+                dbms_output.put_line('more than 20');
+                end if;
+                end;
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+        <div class="query-container">
+            <h3>3 B: if else if</h3>
+            <textarea class="query-text" readonly>
+                set serveroutput on;
+                declare
+                a number:=100;
+                begin
+                if a>20 then
+                dbms_output.put_line('denzil');
+                dbms_output.put_line(
+                'more than 20');
+               elsif a<20 then
+                dbms_output.put_line('less than 20');
+                else
+                dbms_output.put_line('no output');
+                end if;
+                end;
+               
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+        <div class="query-container">
+            <h3>4 Sequence</h3>
+            <textarea class="query-text" readonly>
+                set serveroutput  on;
+                create sequence cid
+                start with 1000129
+                increment by 1
+                minvalue 1000129
+                maxvalue 1002002
+                cycle;
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+        <div class="query-container">
+            <h3>SEQUENCE CONTINUE</h3>
+            <textarea class="query-text" readonly>
+                create table denzil2(id integer,name varchar(20));
+    
+                insert into denzil2 values(cid.nextval,'faizan');
+                insert into denzil2 values(cid.nextval,'ruksar');
+                insert into denzil2 values(cid.nextval,'zakuan');
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+        <div class="query-container">
+            <h3>5 CURSOR</h3>
+            <textarea class="query-text" readonly>
+                create table denzil5(eid integer primary key,ename varchar(20),doj date,salary number);
+    
+                insert into denzil5 values(1,'faizan','2-april-2024',879808);
+                insert into denzil5 values(2,'ruksar','2-april-2024',879768);
+                insert into denzil5 values(3,'zakuan','2-april-2024',879838);
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+        <div class="query-container">
+            <h3>CURSOR CONTINUE</h3>
+            <textarea class="query-text" readonly>
+                set serveroutput on;
+                declare
+                id denzil5.eid%type;
+                name denzil5.ename%type;
+                cursor c1 is
+                select eid,ename from denzil5;
+                begin
+                open c1;
+                loop
+                fetch c1 into id,name;
+                exit when c1%notfound;
+                dbms_output.put_line(id||' '||name);
+                end loop;
+                close c1;
+                end;
+                
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+        <div class="query-container">
+            <h3>6 FUNCTION</h3>
+            <textarea class="query-text" readonly>
+                create or replace function adds(a integer, b in integer)
+                return integer
+                is 
+                c integer;
+                begin
+                c:=a+b;
+                return c;
+                end;
+                
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+        <div class="query-container">
+            <h3>FUNCTION CONTINUE</h3>
+            <textarea class="query-text" readonly>
+                begin 
+                dbms_output.put_line('FUNCTION');
+                dbms_output.put_line('adds(3,4));
+                end;
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+        <div class="query-container">
+            <h3>8 exception</h3>
+            <textarea class="query-text" readonly>
+                set serveroutput on;
+                declare
+                a integer;
+                b integer;
+                c integer;
+                onee exception;
+                begin
+                dbms_output.put_line('denzil-06');
+                a:=&a;
+                b:=&b;
+                if b=1 then
+                raise onee;
+                end if;
+                c:=a/b;
+                dbms_output.put_line(c);
+                exception
+                when zero_divide then
+                dbms_output.put_line('zeroo exception raised');
+                when onee then
+                dbms_output.put_line('one exception raised');
+                end;
+                
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+
+        <div class="query-container">
+            <h3>TRIGGER</h3>
+            <textarea class="query-text" readonly>
+                CREATE OR REPLACE TRIGGER tt
+                BEFORE DELETE ON yasir
+                FOR EACH ROW
+                WHEN (new.tid > 0)
+                DECLARE
+                diff NUMBER;
+                BEGIN
+                diff:=Old.salary - :new.salary; 
+                dbms_output.put_line('old: || :old.salary);
+                dbms_output.put_line('new: new.salary); 
+                dbms_output.put_line('diff: || diff);
+                END;
+            </textarea>
+            <button class="copy-button" onclick="copyQuery()">Click</button>
+        </div>
+    </div>
+    <script>
+function copyQuery() {
+    var queryTexts = document.getElementsByClassName('query-text');
+    for (var i = 0; i < queryTexts.length; i++) {
+        queryTexts[i].select();
+        document.execCommand('copy');
+    }
+    alert('Queries copied to clipboard');
+}
+
+    </script>
+</body>
+
+</html>
